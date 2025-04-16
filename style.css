@@ -1,0 +1,328 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif; /* Instagram uses a clean sans-serif font */
+    background-color: #fafafa; /* Instagram's light gray background */
+    color: #262626; /* Instagram's dark text color */
+    line-height: 1.5;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Header */
+header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #dbdbdb; /* Instagram’s subtle border */
+    padding: 0.75rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    transition: opacity 0.2s ease;
+}
+
+.logo:hover {
+    opacity: 0.8; /* Subtle hover effect */
+}
+
+.logo i {
+    color: #8a3ab9; /* Instagram gradient-inspired purple */
+    font-size: 1.75rem;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-left: 0.5rem;
+    background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); /* Instagram gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-right a {
+    color: #262626;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.header-right a:hover {
+    color: #8a3ab9; /* Purple hover effect */
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 16rem;
+    background-color: #efefef; /* Instagram’s light gray input */
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.search-container input {
+    border: none;
+    background: transparent;
+    padding: 0.5rem 1rem 0.5rem 2.5rem;
+    width: 100%;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.search-container i {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8e8e8e; /* Instagram’s gray icons */
+}
+
+.header-right .icon {
+    color: #262626;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.header-right .icon:hover {
+    color: #8a3ab9;
+}
+
+#cart-count {
+    background: linear-gradient(45deg, #405de6, #c13584); /* Instagram gradient */
+    color: #ffffff;
+    border-radius: 50%;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.75rem;
+    margin-left: 0.25rem;
+    font-weight: bold;
+}
+
+/* Main Content */
+main {
+    margin-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+section {
+    margin-bottom: 1.5rem;
+}
+
+.banner {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #262626;
+    text-align: left;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.product-card {
+    background-color: #ffffff;
+    border: 1px solid #dbdbdb;
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: left;
+    transition: box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+    width: 100%;
+    height: 12rem;
+    object-fit: cover; /* Instagram emphasizes visuals */
+    border-radius: 8px;
+}
+
+.product-card h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+    color: #262626;
+}
+
+.product-card .brand {
+    color: #8e8e8e;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+.product-card .price {
+    color: #e1306c; /* Instagram pink for prices */
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+.product-card button {
+    background: linear-gradient(45deg, #833ab4, #fd1d1d); /* Instagram gradient */
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 0.75rem;
+    width: 100%;
+    font-weight: 500;
+    transition: opacity 0.2s ease;
+}
+
+.product-card button:hover {
+    opacity: 0.9;
+}
+
+/* Footer */
+footer {
+    background-color: #ffffff;
+    border-top: 1px solid #dbdbdb;
+    color: #262626;
+    padding: 2rem 0;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.footer-section h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: #262626;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section a {
+    color: #8e8e8e;
+    text-decoration: none;
+    font-size: 0.875rem;
+}
+
+.footer-section a:hover {
+    color: #833ab4; /* Purple hover */
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #8e8e8e;
+    font-size: 0.875rem;
+}
+
+/* Responsive Design */
+
+/* Small devices (mobile, 320px and up) */
+@media (min-width: 320px) {
+    .container {
+        padding: 0 0.5rem;
+    }
+    .logo h1 {
+        font-size: 1.25rem;
+    }
+    .search-container {
+        max-width: 12rem;
+    }
+    .section-title {
+        font-size: 1.25rem;
+    }
+}
+
+/* Medium devices (tablets, 640px and up) */
+@media (min-width: 640px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .search-container {
+        max-width: 16rem;
+    }
+}
+
+/* Large devices (laptops, 768px and up) */
+@media (min-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+    .section-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* Extra large devices (large laptops/desktops, 1024px and up) */
+@media (min-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .footer-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .container {
+        padding: 0 1rem;
+    }
+}
+
+/* Very large screens (1200px and up) */
+@media (min-width: 1200px) {
+    .product-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}

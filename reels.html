@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reels Shop - SNAP SHOP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #111;
+            padding: 15px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-link {
+            text-decoration: none;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-right a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .header-right a:hover {
+            color: #ff4d4d;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-container input {
+            padding: 8px 30px 8px 10px;
+            border: 1px solid #333;
+            border-radius: 20px;
+            background-color: #222;
+            color: #fff;
+            outline: none;
+        }
+
+        .search-container i {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+
+        .icon {
+            font-size: 20px;
+            color: #fff;
+        }
+
+        #cart-count {
+            background-color: #ff4d4d;
+            color: #fff;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+            position: relative;
+            top: -10px;
+            left: -5px;
+        }
+
+        /* Reel Section Styles */
+        .reel-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            gap: 2rem;
+        }
+
+        .reel-container {
+            width: 100%;
+            max-width: 420px;
+            background-color: #222;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .reel-container video {
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            object-fit: cover;
+        }
+
+        /* Reel Interaction Section (Below Video) */
+        .reel-interaction {
+            background-color: #222;
+            padding: 1rem;
+            border-top: 1px solid #333;
+        }
+
+        .reel-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .reel-actions button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .buy-now {
+            background-color: #ff4d4d;
+            color: #fff;
+        }
+
+        .buy-now:hover {
+            background-color: #e60000;
+        }
+
+        .add-to-cart {
+            background-color: #555;
+            color: #fff;
+        }
+
+        .add-to-cart:hover {
+            background-color: #444;
+        }
+
+        .like-btn {
+            background-color: transparent;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+
+        .like-btn.liked {
+            color: #ff4d4d;
+        }
+
+        .like-btn i {
+            font-size: 1rem;
+        }
+
+        /* Comment Section Styles */
+        .comment-section {
+            background-color: #222;
+            padding: 0 1rem 1rem;
+        }
+
+        .comment-toggle {
+            background: none;
+            border: none;
+            color: #ff4d4d;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+        }
+
+        .comments-list {
+            max-height: 150px;
+            overflow-y: auto;
+            margin-bottom: 0.5rem;
+            display: none;
+        }
+
+        .comments-list.show {
+            display: block;
+        }
+
+        .comment {
+            font-size: 0.85rem;
+            color: #ddd;
+            margin-bottom: 0.5rem;
+            word-wrap: break-word;
+        }
+
+        .comment-input {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .comment-input input {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #333;
+            border-radius: 20px;
+            background-color: #333;
+            color: #fff;
+            outline: none;
+            font-size: 0.85rem;
+        }
+
+        .comment-input button {
+            background-color: #ff4d4d;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .comment-input button:hover {
+            background-color: #e60000;
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #111;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .reel-container {
+                max-width: 100%;
+            }
+
+            .reel-actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .reel-actions button {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+
+            .comment-input {
+                flex-direction: column;
+            }
+
+            .comment-input input {
+                width: 100%;
+            }
+
+            .comment-input button {
+                width: 100%;
+                padding: 8px;
+            }
+        }
+
+        @media (min-width: 481px) and (max-width: 768px) {
+            .reel-actions {
+                flex-direction: row;
+                gap: 8px;
+            }
+
+            .reel-actions button {
+                padding: 8px 14px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .reel-actions {
+                gap: 12px;
+            }
+
+            .reel-actions button {
+                padding: 8px 16px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo-link">
+                <div class="logo">
+                    <i class="fas fa-shoe-prints"></i>
+                    <h1>SNAP SHOP</h1>
+                </div>
+            </a>
+            <div class="header-right">
+                <a href="mens-shoes.html">MEN</a>
+                <a href="womens-shoes.html">WOMEN</a>
+                <a href="kids-shoes.html">KIDS</a>
+                <a href="reels.html">REELS</a>
+                <div class="search-container">
+                    <input type="text" placeholder="Search for Shoes">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div>
+                    <a href="cart.html"><i class="fas fa-shopping-cart icon"></i></a>
+                    <span id="cart-count">0</span>
+                </div>
+                <a href="login.html"><i class="fas fa-user-circle icon"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Reels Section -->
+    <div class="reel-wrapper">
+        <!-- Reel 1 -->
+        <div class="reel-container">
+            <video autoplay muted loop playsinline>
+                <source src="videos/shoe1.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+            <div class="reel-interaction">
+                <div class="reel-actions">
+                    <button class="buy-now" onclick="window.location.href='https:feature.com/products/jordan-air-jordan-12-retro-gs-black-varsity-red?nosto=frontpage-nosto-1-fallback-nosto-1'">Buy Now</button>
+                    <button class="add-to-cart">Add to Cart</button>
+                    <button class="like-btn" onclick="toggleLike(this)">
+                        <i class="far fa-heart"></i> Like
+                    </button>
+                </div>
+                <div class="comment-section">
+                    <button class="comment-toggle" onclick="toggleComments(this)">Show Comments</button>
+                    <div class="comments-list">
+                        <!-- Comments will be dynamically added here -->
+                    </div>
+                    <div class="comment-input">
+                        <input type="text" placeholder="Add a comment...">
+                        <button onclick="postComment(this)">Post</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reel 2 -->
+        <div class="reel-container">
+            <video autoplay muted loop playsinline>
+                <source src="videos/Shoe2.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+            <div class="reel-interaction">
+                <div class="reel-actions">
+                    <button class="buy-now" onclick="window.location.href='https:www.nike.com/in/launch/t/air-max-97-silver-bullet'">Buy Now</button>
+                    <button class="add-to-cart">Add to Cart</button>
+                    <button class="like-btn" onclick="toggleLike(this)">
+                        <i class="far fa-heart"></i> Like
+                    </button>
+                </div>
+                <div class="comment-section">
+                    <button class="comment-toggle" onclick="toggleComments(this)">Show Comments</button>
+                    <div class="comments-list">
+                        <!-- Comments will be dynamically added here -->
+                    </div>
+                    <div class="comment-input">
+                        <input type="text" placeholder="Add a comment...">
+                        <button onclick="postComment(this)">Post</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reel 3 -->
+        <div class="reel-container">
+            <video autoplay muted loop playsinline>
+                <source src="videos/shoe3.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+            <div class="reel-interaction">
+                <div class="reel-actions">
+                    <button class="buy-now" onclick="window.location.href='https:vegtus.com/en/producto/oasis-woman-yellow-vegtus/'">Buy Now</button>
+                    <button class="add-to-cart" onclick="window.location.href='product.'">Add to cart</button>
+                    <button class="like-btn" onclick="toggleLike(this)">
+                        <i class="far fa-heart"></i> Like
+                    </button>
+                </div>
+                <div class="comment-section">
+                    <button class="comment-toggle" onclick="toggleComments(this)">Show Comments</button>
+                    <div class="comments-list">
+                        <!-- Comments will be dynamically added here -->
+                    </div>
+                    <div class="comment-input">
+                        <input type="text" placeholder="Add a comment...">
+                        <button onclick="postComment(this)">Post</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        © 2025 SNAP SHOP. All rights reserved.
+    </footer>
+
+    <!-- JavaScript for Like and Comment Functionality -->
+    <script>
+        // Toggle Like Button
+        function toggleLike(button) {
+            button.classList.toggle('liked');
+            const icon = button.querySelector('i');
+            if (button.classList.contains('liked')) {
+                icon.classList.replace('far', 'fas'); // Solid heart when liked
+            } else {
+                icon.classList.replace('fas', 'far'); // Outline heart when unliked
+            }
+        }
+
+        // Toggle Comments Section
+        function toggleComments(button) {
+            const commentsList = button.nextElementSibling;
+            commentsList.classList.toggle('show');
+            button.textContent = commentsList.classList.contains('show') ? 'Hide Comments' : 'Show Comments';
+        }
+
+        // Post a Comment
+        function postComment(button) {
+            const input = button.previousElementSibling;
+            const commentText = input.value.trim();
+            if (commentText) {
+                const commentsList = button.closest('.comment-section').querySelector('.comments-list');
+                const commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+                commentDiv.textContent = commentText;
+                commentsList.appendChild(commentDiv);
+                input.value = ''; // Clear input
+                commentsList.classList.add('show'); // Show comments if hidden
+                const toggleButton = button.closest('.comment-section').querySelector('.comment-toggle');
+                toggleButton.textContent = 'Hide Comments';
+            }
+        }
+    </script>
+</body>
+</html>
